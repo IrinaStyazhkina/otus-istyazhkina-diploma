@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Documents constructor</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/style/style.css">
+    <script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="page">
+    <header class="header">
+        <a href="/">
+            <h1 class="header_title" th:text="#{title.header}">Documents Constructor</h1>
+        </a>
+        <div class="header_langs">
+            <a class="lang_link" href="?lang=ru_RU">
+                <img src="/img/russian-language.svg" width="30" height="30"/>
+            </a>
+            <a class="lang_link" href="?lang=en">
+                <img src="/img/english-language.svg" width="30" height="30"/>
+            </a>
+        </div>
+        <div class="header_logout">
+            <a href="/logout">
+                <img src="/img/logout_icon.svg" width="30" height="30">
+            </a>
+        </div>
+    </header>
+    <main class="content">
+        <div class="content_column">
+            <h2 class="content_header" th:text="#{content.all.employees}">All employees</h2>
+            <table class="table">
+                <thead class="table_header">
+                <tr class="table_row table_row--header">
+                    <th class="table_cell table_cell--header">ID</th>
+                    <th class="table_cell table_cell--header" th:text="#{employee.name}">Name</th>
+                    <th class="table_cell table_cell--header" th:text="#{employee.second.name}">Second name</th>
+                    <th class="table_cell table_cell--header" th:text="#{employee.surname}">Surname</th>
+                    <th class="table_cell table_cell--header" th:text="#{employee.position}">Position</th>
+                    <th class="table_cell table_cell--header"></th>
+                    <th class="table_cell table_cell--header"></th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <footer class="footer">
+        <p class="footer_content">&copy; 2021 <span
+                th:text="#{footer.copyright}">Documents constructor. Diploma project</span></p>
+    </footer>
+</div>
+<script src="/js/employee.js"></script>
+<script>
+    $(function () {
+        loadAllEmployees();
+    });
+</script>
+</body>
+</html>

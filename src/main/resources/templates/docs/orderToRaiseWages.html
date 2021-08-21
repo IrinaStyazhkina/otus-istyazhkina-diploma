@@ -1,0 +1,76 @@
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <style>
+        body {
+            background-color: lightgray;
+            font-size: 12px;
+        }
+
+        h1 {
+            color: black;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        p {
+            color: black;
+        }
+
+        .company_name, .order {
+            text-align: center;
+        }
+
+        .page {
+            padding: 20px;
+        }
+
+        .data_wrapper {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+<div style="font-family: 'Inter', serif" class="page">
+    <header class="header">
+        <p class="company_name" th:text="${legalForm} + ' ' + ${companyName}"> Общество с ограниченной ответственностью
+            "Ромашка"</p>
+    </header>
+    <main class="content">
+        <h1>Приказ №____ о повышении заработной платы</h1>
+        <div class="data_wrapper">
+            <p>г.<span th:text="${city}">г.Москва</span></p>
+            <p th:text="${dateOfDocument}">17.08.2021</p>
+        </div>
+
+        <p>В связи с регулярным достижением работником выдающихся результатов, а также существенным превышением плановых
+            показателей в работе</p>
+        <p class="order">ПРИКАЗЫВАЮ</p>
+        <p>1. С <span th:text="${newSalaryDate}">01.09.2021</span> установить должностной оклад <span
+                th:text="${position}">инженеру по охране труда</span>
+            <b th:text="${name_dat}">Васильеву Василию Васильевичу</b>
+            в размере <b th:text="${rubles}">20000</b> рублей <b th:text="${kopec}">00</b> копеек</p>
+        <p>2. Главному бухгалтеру <span>Веселовой Инге Вячеславовне </span> обеспечить расчет и своевременные выплаты
+            оклада, указанного в п. 1 настоящего приказа</p>
+
+        <p>Контроль за исполнением настоящего приказа возлагаю на себя</p>
+
+        <p><span th:text="${managerPosition}">Генеральный директор</span> <span th:text="${manager}">Иванов А.А.</span>
+            ___________________</p>
+        <p class="order">С приказом ознакомлены:</p>
+        <p>
+            Главный бухгалтер <span>Веселова И.В.</span> ____________
+        </p>
+        <p>
+            <span th:text="${name} + ' ' + ${secondName} + ' '+ ${surname}">Васильев В.В.</span> ____________
+        </p>
+
+    </main>
+    <footer class="footer">
+
+    </footer>
+</div>
+</body>
+</html>

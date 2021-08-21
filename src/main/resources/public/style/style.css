@@ -1,0 +1,157 @@
+body {
+    background-color: tan;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.page {
+    width: 1600px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    background-color: darkolivegreen;
+    display: flex;
+    padding: 20px;
+}
+
+.header_title {
+    color: antiquewhite;
+}
+
+.header_logout {
+    margin-left: auto;
+}
+
+.content {
+    padding: 20px;
+    display: flex;
+    height: 100%;
+    background-color: antiquewhite;
+    flex-direction: column;
+}
+
+.content_column {
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.content_header {
+    text-align: center;
+}
+
+.content_button {
+    margin: 20px;
+    padding: 20px;
+    color: antiquewhite;
+    background-color: darkolivegreen;
+    width: 500px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.form_wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.item_form {
+    display: flex;
+    flex-direction: column;
+    background-color: darkolivegreen;
+    margin: 20px auto;
+    width: 500px;
+    color: antiquewhite;
+}
+
+.item_input {
+    padding: 5px;
+    margin: 5px 10px 0;
+}
+
+.item_label {
+    margin: 5px 10px;
+}
+
+.item_select {
+    padding: 5px;
+    margin: 5px 10px 0;
+}
+
+.item_btn {
+    color: antiquewhite;
+    background-color: darkolivegreen;
+    border: 2px solid antiquewhite;
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pdf_btn {
+    color: antiquewhite;
+    background-color: darkolivegreen;
+    border: 2px solid white;
+    width: 500px;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.table {
+    margin: 20px auto;
+}
+
+.table_cell {
+    background-color: darkolivegreen;
+    color: antiquewhite;
+    padding: 10px 15px;
+    text-overflow: ellipsis;
+    white-space: pre-line;
+    overflow: hidden;
+    font-size: 14px;
+    max-width: 200px;
+}
+
+.table_edit-link, .delete_button {
+    color: antiquewhite;
+    background-color: darkolivegreen;
+    border: 2px solid white;
+    display: block;
+    padding: 10px;
+    margin: 5px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.delete_button:hover {
+    cursor: pointer;
+}
+
+.footer {
+    background-color: darkolivegreen;
+    color: antiquewhite;
+    display: flex;
+    flex: 0 0 auto;
+    padding: 20px;
+}
+
+
+
+
+
+
+

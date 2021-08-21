@@ -1,0 +1,75 @@
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <style>
+        body {
+            background-color: lightgray;
+            font-size: 12px;
+        }
+
+        h1 {
+            color: black;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        p {
+            color: black;
+        }
+
+        .company_name, .order {
+            text-align: center;
+        }
+
+        .page {
+            padding: 20px;
+        }
+
+        .data_wrapper {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+<div style="font-family: 'Inter', serif" class="page">
+    <header class="header">
+        <p class="company_name" th:text="${legalForm} + ' ' + ${companyName}"> Общество с ограниченной ответственностью
+            "Ромашка"</p>
+    </header>
+    <main class="content">
+        <h1>Доверенность № ___</h1>
+        <div class="data_wrapper">
+            <p>г.<span th:text="${city}">г.Москва</span></p>
+            <p th:text="${dateOfDocument}">17.08.2021</p>
+        </div>
+
+        <p><span th:text="${legalForm} + ' ' + ${companyName}">Общество с ограниченной ответственностью "Ромашка"</span>(далее
+            - Общество) в лице <span th:text="${managerPositionAcc}">Генерального директора</span>
+            <span th:text="${managerNameAcc}">Иванова Петра Михайловича</span>, действующего на основании Устава,
+            уполномачивает <span th:text="${employeeNameAcc}">Васильева Владимира Владимировича</span>,
+            паспорт <span th:text="${employeePassNumber}">5011 297856</span>, выдан <span th:text="${employeePassDate}">20.08.08</span>
+            <span th:text="${employeePassIssued}">УВД Центрального района г.Самара</span>, совершать от имени Обшества
+            следующие действия:
+        </p>
+        <div th:text="${powers}">
+            Подписывать договоры аренды, купли-продажи
+        </div>
+
+        <p>Настоящая доверенность выдана сроком до <span th:text="${expireDate}">20.12.2023</span></p>
+        <p>
+            <span th:text="${managerPosition}">Генеральный директор</span>
+            <span th:text="${managerName}">Иванов П.М.</span> ____________
+        </p>
+        <p>
+            <span th:text="${employeeName}">Васильев В.В.</span> ____________
+        </p>
+
+    </main>
+    <footer class="footer">
+
+    </footer>
+</div>
+</body>
+</html>
