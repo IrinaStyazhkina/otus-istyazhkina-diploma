@@ -16,20 +16,20 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class Employee {
 
     @Id
-    String id;
+    private String id;
     @Field("name")
-    String name;
+    private String name;
     @Field("second_name")
-    String secondName;
+    private String secondName;
     @Field("surname")
-    String surname;
+    private String surname;
     @Field("position")
-    EmployeePosition position;
+    private EmployeePosition position;
     @Field("pass_number")
-    String passNumber;
+    private String passNumber;
     @Field("pass_date")
-    String passDate;
+    private String passDate;
     @Field("pass_issued")
-    String passIssued;
+    private String passIssued;
 
 }

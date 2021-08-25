@@ -12,7 +12,7 @@ import ru.otus.istyazhkina.constructor.domain.entity.ManagerPosition;
 import ru.otus.istyazhkina.constructor.domain.entity.Power;
 import ru.otus.istyazhkina.constructor.domain.entity.User;
 import ru.otus.istyazhkina.constructor.repository.CompanyLegalFormRepository;
-import ru.otus.istyazhkina.constructor.repository.ContractorRepository;
+import ru.otus.istyazhkina.constructor.repository.CompanyRepository;
 import ru.otus.istyazhkina.constructor.repository.DocumentTypesRepository;
 import ru.otus.istyazhkina.constructor.repository.EmployeePositionsRepository;
 import ru.otus.istyazhkina.constructor.repository.EmployeeRepository;
@@ -127,8 +127,8 @@ public class InitDatabaseChangeLog {
     }
 
     @ChangeSet(order = "005", id = "addContractors", author = "irinastyazhkina", runAlways = true)
-    public void addContractors(ContractorRepository contractorRepository) {
-        contractorRepository.save(Company.builder()
+    public void addContractors(CompanyRepository companyRepository) {
+        companyRepository.save(Company.builder()
                 .companyLegalForm(companyLegalForms.get(0))
                 .companyName("Рога и копыта")
                 .inn("4763567722")
@@ -137,7 +137,7 @@ public class InitDatabaseChangeLog {
                 .managerSurname("Бендер")
                 .build());
 
-        contractorRepository.save(Company.builder()
+        companyRepository.save(Company.builder()
                 .companyLegalForm(companyLegalForms.get(1))
                 .companyName("Сытые котики")
                 .inn("2600896725")
@@ -147,7 +147,7 @@ public class InitDatabaseChangeLog {
                 .managerSurname("Сметанник")
                 .build());
 
-        contractorRepository.save(Company.builder().
+        companyRepository.save(Company.builder().
                 companyLegalForm(companyLegalForms.get(2))
                 .companyName("Зеленоглазое такси")
                 .inn("34256542566")

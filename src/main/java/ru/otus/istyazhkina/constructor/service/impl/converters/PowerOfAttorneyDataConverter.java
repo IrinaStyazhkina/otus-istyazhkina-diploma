@@ -2,7 +2,6 @@ package ru.otus.istyazhkina.constructor.service.impl.converters;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.morpher.ws3.russian.DeclensionResult;
 import ru.morpher.ws3.russian.RussianClient;
@@ -15,12 +14,12 @@ import ru.otus.istyazhkina.constructor.repository.CompanyRepository;
 import ru.otus.istyazhkina.constructor.repository.EmployeeRepository;
 import ru.otus.istyazhkina.constructor.repository.PowerRepository;
 import ru.otus.istyazhkina.constructor.service.FormDataConverter;
+import ru.otus.istyazhkina.constructor.service.TemplateResolver;
 import ru.otus.istyazhkina.constructor.service.impl.MorpherService;
 
 import java.util.HashMap;
 
-@Service
-@Qualifier("PowerOfAttorneyDataConverter")
+@Service("PowerOfAttorneyDataConverter")
 @RequiredArgsConstructor
 public class PowerOfAttorneyDataConverter implements FormDataConverter {
 
@@ -28,6 +27,7 @@ public class PowerOfAttorneyDataConverter implements FormDataConverter {
     private final CompanyRepository companyRepository;
     private final PowerRepository powerRepository;
     private final MorpherService morpherService;
+    private final TemplateResolver templateResolver;
 
     @Override
     @SneakyThrows
@@ -83,4 +83,10 @@ public class PowerOfAttorneyDataConverter implements FormDataConverter {
 
         return data;
     }
+
+    @Override
+    public String getTemplateId() {
+        return "1";
+    }
+
 }

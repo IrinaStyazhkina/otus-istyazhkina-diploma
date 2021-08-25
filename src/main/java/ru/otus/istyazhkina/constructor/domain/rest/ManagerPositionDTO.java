@@ -11,8 +11,8 @@ import ru.otus.istyazhkina.constructor.domain.entity.ManagerPosition;
 @AllArgsConstructor
 @Builder
 public class ManagerPositionDTO {
-    String id;
-    String title;
+    private String id;
+    private String title;
 
     public static ManagerPosition toEntity(ManagerPositionDTO dto) {
         return ManagerPosition.builder()

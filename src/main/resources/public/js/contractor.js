@@ -108,7 +108,7 @@ function addContractor() {
         data: JSON.stringify(contractor),
         contentType: "application/json;charset=utf-8",
         success: function () {
-            alert("Contractor is successfully added!");
+            alert("Контрагент успешно добавлен!");
             goToContractorsPage();
         },
         error: function (error) {
@@ -146,7 +146,7 @@ function updateContractor() {
         data: JSON.stringify(contractor),
         contentType: "application/json;charset=utf-8",
         success: function () {
-            alert("Contractor is successfully updated!");
+            alert("Контрагент успешно обновлен!");
             goToContractorsPage();
         },
         error: function (error) {
@@ -162,7 +162,7 @@ function deleteContractor(companyId) {
         url: "/contractor/" + companyId,
         method: "DELETE",
         success: function () {
-            alert("Contractor with id " + companyId + " is successfully deleted!");
+            alert("Контрагент с ID " + companyId + " успешно удален!");
             goToContractorsPage();
         },
         error: function (error) {

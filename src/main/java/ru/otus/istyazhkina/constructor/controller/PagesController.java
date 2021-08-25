@@ -65,5 +65,4 @@ public class PagesController {
         return "documents";
     }
 
-
 }

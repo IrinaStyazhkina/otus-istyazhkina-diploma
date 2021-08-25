@@ -95,11 +95,8 @@ function saveDocument(link) {
         data: JSON.stringify(data),
         async: false,
         contentType: "application/json;charset=utf-8",
-        success: function () {
-            alert("Document successfully saved!")
-        },
-        error: function (error) {
-            alert(error.responseText);
+        complete: function () {
+            alert("Документ успешно добавлен!")
         }
     });
 }
@@ -141,9 +138,7 @@ function getPoAPdf() {
         'expireDate': expireDate,
         'power': {'id': power_id}
     };
-
     getPdf(formData);
-
 }
 
 function getCompanies() {

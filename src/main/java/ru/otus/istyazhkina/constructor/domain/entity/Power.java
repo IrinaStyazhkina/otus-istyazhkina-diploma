@@ -15,9 +15,9 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Builder
 public class Power {
     @Id
-    String id;
+    private String id;
     @Field("name")
-    String name;
+    private String name;
     @Field("value")
-    String value;
+    private String value;
 }

@@ -2,7 +2,6 @@ package ru.otus.istyazhkina.constructor.service.impl.converters;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.morpher.ws3.russian.DeclensionResult;
 import ru.morpher.ws3.russian.RussianClient;
@@ -16,8 +15,7 @@ import ru.otus.istyazhkina.constructor.service.impl.MorpherService;
 
 import java.util.HashMap;
 
-@Service
-@Qualifier("OrderToRaiseWagesDataConverter")
+@Service("OrderToRaiseWagesDataConverter")
 @RequiredArgsConstructor
 public class OrderToRaiseWagesDataConverter implements FormDataConverter {
 
@@ -66,4 +64,10 @@ public class OrderToRaiseWagesDataConverter implements FormDataConverter {
 
         return data;
     }
+
+    @Override
+    public String getTemplateId() {
+        return "2";
+    }
+
 }

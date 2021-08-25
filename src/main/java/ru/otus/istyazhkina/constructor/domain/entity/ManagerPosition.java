@@ -15,7 +15,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Builder
 public class ManagerPosition {
     @Id
-    String id;
+    private String id;
     @Field("title")
-    String title;
+    private String title;
 }

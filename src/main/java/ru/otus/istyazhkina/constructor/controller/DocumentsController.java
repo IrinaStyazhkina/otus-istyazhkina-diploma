@@ -1,8 +1,7 @@
 package ru.otus.istyazhkina.constructor.controller;
 
-import lombok.SneakyThrows;
+import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,12 +16,15 @@ import ru.otus.istyazhkina.constructor.domain.rest.FormData;
 import ru.otus.istyazhkina.constructor.domain.rest.PowerDTO;
 import ru.otus.istyazhkina.constructor.exception.DataNotFoundException;
 import ru.otus.istyazhkina.constructor.service.DocumentService;
-import ru.otus.istyazhkina.constructor.service.FormDataConverter;
+import ru.otus.istyazhkina.constructor.service.factory.FormDataConverterFactoryService;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -31,23 +33,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
+@RequiredArgsConstructor
 public class DocumentsController {
 
     private final DocumentService documentService;
-    private final FormDataConverter orderDataConverter;
-    private final FormDataConverter powerOfAttorneyDataConverter;
-
-    public DocumentsController(DocumentService documentService,
-                               @Qualifier("OrderToRaiseWagesDataConverter") FormDataConverter orderDataConverter,
-                               @Qualifier("PowerOfAttorneyDataConverter") FormDataConverter powerOfAttorneyDataConverter) {
-        this.documentService = documentService;
-        this.orderDataConverter = orderDataConverter;
-        this.powerOfAttorneyDataConverter = powerOfAttorneyDataConverter;
-
-    }
+    private final FormDataConverterFactoryService formDataConverterFactory;
 
     @GetMapping("/api/template")
     @ResponseStatus(OK)
@@ -69,11 +63,7 @@ public class DocumentsController {
 
     @PostMapping("/doc/create/{templateId}")
     public ResponseEntity<HashMap<String, String>> createDocument(@PathVariable("templateId") String templateId, @RequestBody FormData formData) {
-        File file = null;
-        if (templateId.equals("1"))
-            file = documentService.createDocument(templateId, powerOfAttorneyDataConverter.convertFormDataToMap(formData));
-        if (templateId.equals("2"))
-            file = documentService.createDocument(templateId, orderDataConverter.convertFormDataToMap(formData));
+        File file = documentService.createDocument(templateId, formDataConverterFactory.getConverterByTemplateId(templateId).convertFormDataToMap(formData));
         String absolutePath = file.getAbsolutePath();
         String path = absolutePath.substring(16);
         HashMap<String, String> body = new HashMap<>();
@@ -81,38 +71,8 @@ public class DocumentsController {
         return ResponseEntity.ok().body(body);
     }
 
-    @GetMapping("/download-pdf/{tempFolder}/T/{doc}")
-    public void downloadTempPDFResource(@PathVariable("tempFolder") String tempFolder, @PathVariable("doc") String filePath, HttpServletResponse response) {
-        Path path = Paths.get("/var/folders/b8/" + tempFolder + "/T/" + filePath);
-        try {
-            if (Files.exists(path)) {
-                response.setContentType("application/pdf");
-                response.addHeader("Content-Disposition",
-                        "attachment; filename=" + path.getFileName());
-                Files.copy(path, response.getOutputStream());
-                response.getOutputStream().flush();
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    @GetMapping("/document/{id}")
-    public void downloadPdf(@PathVariable("id") String docId, HttpServletResponse response) throws DataNotFoundException {
-        Doc documentById = documentService.getDocumentById(docId);
-        try {
-            response.setContentType("application/pdf");
-            response.addHeader("Content-Disposition",
-                    "attachment; filename=" + documentById.getFileName());
-            IOUtils.copy(new ByteArrayInputStream(documentById.getFile().getData()), response.getOutputStream());
-            response.getOutputStream().flush();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
-
     @PostMapping("/save")
-    @SneakyThrows
+    @ResponseStatus(CREATED)
     public void saveDocument(@RequestBody Map<String, String> payload) {
         documentService.save(payload.get("link"));
     }
@@ -127,7 +87,28 @@ public class DocumentsController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("/download-pdf/{tempFolder}/T/{doc}")
+    public void downloadTemporaryPDFResource(@PathVariable("tempFolder") String tempFolder, @PathVariable("doc") String filePath, HttpServletResponse response) throws IOException {
+        String file = "/var/folders/b8/" + tempFolder + "/T/" + filePath;
+        Path path = Paths.get(file);
+        if (Files.exists(path)) {
+            prepareDownloadResponse(response, file, new BufferedInputStream(new FileInputStream(file)));
+        }
+    }
 
+    @GetMapping("/document/{id}")
+    public void downloadPdf(@PathVariable("id") String docId, HttpServletResponse response) throws DataNotFoundException, IOException {
+        Doc documentById = documentService.getDocumentById(docId);
+        prepareDownloadResponse(response, documentById.getFileName(), new ByteArrayInputStream(documentById.getFile().getData()));
+    }
+
+    private void prepareDownloadResponse(HttpServletResponse response, String filename, InputStream is) throws IOException {
+        response.setContentType("application/pdf");
+        response.addHeader("Content-Disposition",
+                "attachment; filename=" + filename);
+        IOUtils.copy(is, response.getOutputStream());
+        response.getOutputStream().flush();
+    }
 }
 
 

@@ -102,7 +102,7 @@ function addEmployee() {
         data: JSON.stringify(employee),
         contentType: "application/json;charset=utf-8",
         success: function () {
-            alert("Employee is successfully added!");
+            alert("Сотрудник успешно добавлен!");
             goToEmployeesPage();
         },
         error: function (error) {
@@ -141,7 +141,7 @@ function updateEmployee() {
         dataType: "json",
         data: JSON.stringify(employee),
         success: function () {
-            alert("Employee is successfully updated!");
+            alert("Сотрудник успешно обновлен!");
             goToEmployeesPage();
         },
         error: function (error) {
@@ -156,7 +156,7 @@ function deleteEmployee(employeeId) {
         url: "/employee/" + employeeId,
         method: "DELETE",
         success: function () {
-            alert("Employee with id " + employeeId + " is successfully deleted!");
+            alert("Сотрудник с id " + employeeId + " успешно удален!");
             goToEmployeesPage();
         },
         error: function (error) {

@@ -15,20 +15,20 @@ import javax.validation.constraints.NotEmpty;
 @Builder
 public class CompanyDTO {
 
-    String id;
+    private String id;
     @NotEmpty(message = "Please provide company legal form")
-    CompanyLegalFormDTO companyLegalForm;
+    private CompanyLegalFormDTO companyLegalForm;
     @NotEmpty(message = "Please provide company name")
-    String companyName;
+    private String companyName;
     @NotEmpty(message = "Please provide manager position")
-    ManagerPositionDTO managerPosition;
+    private ManagerPositionDTO managerPosition;
     @NotEmpty(message = "Please provide manager name")
-    String managerName;
-    String managerSecondName;
+    private String managerName;
+    private String managerSecondName;
     @NotEmpty(message = "Please provide manager surname")
-    String managerSurname;
+    private String managerSurname;
     @NotEmpty(message = "Please provide company inn")
-    String inn;
+    private String inn;
 
     public static Company toEntity(CompanyDTO dto) {
         return Company.builder()

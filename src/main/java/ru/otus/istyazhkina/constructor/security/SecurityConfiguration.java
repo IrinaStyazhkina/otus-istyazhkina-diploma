@@ -35,8 +35,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .permitAll()
                 .defaultSuccessUrl("/")
-//                .and()
-//                .exceptionHandling().accessDeniedPage("/accessDenied.html")
                 .and()
                 .rememberMe()
                 .key("library")

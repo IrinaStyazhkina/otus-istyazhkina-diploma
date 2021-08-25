@@ -16,19 +16,19 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class Company {
 
     @Id
-    String id;
+    private String id;
     @Field("company_form")
-    CompanyLegalForm companyLegalForm;
+    private CompanyLegalForm companyLegalForm;
     @Field("company_name")
-    String companyName;
+    private String companyName;
     @Field("manager_position")
-    ManagerPosition position;
+    private ManagerPosition position;
     @Field("manager_name")
-    String managerName;
+    private String managerName;
     @Field("manager_second_name")
-    String managerSecondName;
+    private String managerSecondName;
     @Field("manager_surname")
-    String managerSurname;
+    private String managerSurname;
     @Field("inn")
-    String inn;
+    private String inn;
 }

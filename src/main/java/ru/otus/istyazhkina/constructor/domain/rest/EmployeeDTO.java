@@ -15,20 +15,20 @@ import javax.validation.constraints.NotEmpty;
 @Builder
 public class EmployeeDTO {
 
-    String id;
+    private String id;
     @NotEmpty(message = "Please provide employee's name")
-    String name;
-    String secondName;
+    private String name;
+    private String secondName;
     @NotEmpty(message = "Please provide employee's surname")
-    String surname;
+    private String surname;
     @NotEmpty(message = "Please provide employee's position")
-    EmployeePositionDTO employeePositionDTO;
+    private EmployeePositionDTO employeePositionDTO;
     @NotEmpty(message = "Please provide employee's pass number")
-    String passNumber;
+    private String passNumber;
     @NotEmpty(message = "Please provide employee's pass date")
-    String passDate;
+    private String passDate;
     @NotEmpty(message = "Please provide information who issued employee's pass")
-    String passIssued;
+    private String passIssued;
 
     public static Employee toEntity(EmployeeDTO dto) {
         return Employee.builder()

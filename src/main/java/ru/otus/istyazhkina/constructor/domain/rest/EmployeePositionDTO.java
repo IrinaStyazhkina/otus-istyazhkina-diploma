@@ -12,8 +12,8 @@ import ru.otus.istyazhkina.constructor.domain.entity.EmployeePosition;
 @Builder
 public class EmployeePositionDTO {
 
-    String id;
-    String title;
+    private String id;
+    private String title;
 
     public static EmployeePosition toEntity(EmployeePositionDTO dto) {
         return EmployeePosition.builder()

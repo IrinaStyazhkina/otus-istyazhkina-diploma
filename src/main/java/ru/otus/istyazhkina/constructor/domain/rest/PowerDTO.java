@@ -11,9 +11,9 @@ import ru.otus.istyazhkina.constructor.domain.entity.Power;
 @AllArgsConstructor
 @Builder
 public class PowerDTO {
-    String id;
-    String name;
-    String value;
+    private String id;
+    private String name;
+    private String value;
 
     public static Power toEntity(PowerDTO dto) {
         return Power.builder()

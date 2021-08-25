@@ -16,8 +16,8 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class EmployeePosition {
 
     @Id
-    String id;
+    private String id;
     @Field("title")
-    String title;
+    private String title;
 
 }

@@ -14,14 +14,14 @@ import ru.otus.istyazhkina.constructor.domain.entity.Power;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FormData {
 
-    CompanyDTO company;
-    EmployeeDTO employee;
-    String city;
-    String docDate;
-    String salaryDate;
-    Integer salaryRub;
-    Integer salaryCop;
-    Power power;
-    String expireDate;
+    private CompanyDTO company;
+    private EmployeeDTO employee;
+    private String city;
+    private String docDate;
+    private String salaryDate;
+    private Integer salaryRub;
+    private Integer salaryCop;
+    private Power power;
+    private String expireDate;
 
 }

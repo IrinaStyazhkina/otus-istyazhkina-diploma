@@ -12,9 +12,9 @@ import ru.otus.istyazhkina.constructor.domain.entity.DocumentType;
 @Builder
 public class DocumentTypeDTO {
 
-    String id;
-    String alias;
-    String link;
+    private String id;
+    private String alias;
+    private String link;
 
     public static DocumentType toEntity(DocumentTypeDTO dto) {
         return DocumentType.builder()

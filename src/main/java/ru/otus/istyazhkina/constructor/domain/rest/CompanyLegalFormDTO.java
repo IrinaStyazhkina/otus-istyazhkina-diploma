@@ -12,8 +12,8 @@ import ru.otus.istyazhkina.constructor.domain.entity.CompanyLegalForm;
 @Builder
 public class CompanyLegalFormDTO {
 
-    String id;
-    String title;
+    private String id;
+    private String title;
 
     public static CompanyLegalForm toEntity(CompanyLegalFormDTO dto) {
         return CompanyLegalForm.builder()
